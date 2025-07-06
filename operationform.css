@@ -1,0 +1,163 @@
+.operationM-section {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background: #f9faff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+}
+
+.operationM-vehicles-header {
+  margin-bottom: 1rem;
+}
+
+.operationM-vehicles-header h2 {
+  color: #0077cc;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.operationM-vehicles-header hr {
+  border: none;
+  border-bottom: 2px solid #0077cc;
+  margin-bottom: 1rem;
+}
+
+.operationM-form-container {
+  background: white;
+  padding: 1.2rem 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.operationM-form-header {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0077cc;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #0077cc;
+  padding-bottom: 0.3rem;
+}
+
+.operationM-form-section {
+  margin-bottom: 1.3rem;
+}
+
+.operationM-form-section-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: #005a9c;
+  border-left: 4px solid #0077cc;
+  padding-left: 0.5rem;
+}
+
+.operationM-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.operationM-form-group {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.operationM-form-group label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.operationM-form-group input,
+.operationM-form-group select,
+.operationM-form-group textarea {
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+  resize: vertical;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.operationM-form-group textarea {
+  min-height: 80px;
+  height: auto;
+}
+
+.operationM-form-group input:focus,
+.operationM-form-group select:focus,
+.operationM-form-group textarea:focus {
+  outline: none;
+  border-color: #0077cc;
+  box-shadow: 0 0 5px #a9d3ff;
+}
+
+.operationM-full-width {
+  flex: 1 1 100%;
+}
+
+.operationM-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.operationM-form-actions button {
+  background-color: #0077cc;
+  border: none;
+  color: white;
+  padding: 0.55rem 1.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.operationM-form-actions button:hover {
+  background-color: #005a9c;
+}
+
+.operationM-print-container {
+  margin-top: 2rem;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  display: none;
+}
+
+.operationM-print-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  color: #222;
+}
+
+.operationM-print-table td,
+.operationM-print-table th {
+  border: 1px solid #ddd;
+  padding: 0.5rem 0.8rem;
+}
+
+.operationM-section-header th {
+  background-color: #0077cc;
+  color: white;
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .operationM-form-row {
+    flex-direction: column;
+  }
+}

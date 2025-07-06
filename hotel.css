@@ -1,0 +1,343 @@
+.section {
+  padding: 30px;
+  background-color: #fafafa;
+  border-radius: 10px;
+}
+
+/* === Header === */
+.vehicles-header {
+  margin-bottom: 10px;
+}
+
+.vehicles-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 26px;
+  color: #007bff;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+.vehicles-header h2 .material-icons {
+  font-size: 28px;
+  color: #007bff;
+  line-height: 1;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 15px 0;
+}
+
+/* === Search Controls === */
+.search-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  min-width: 220px;
+}
+
+.search-box .material-icons {
+  margin-right: 8px;
+  font-size: 20px;
+  color: #888;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* === Add Button === */
+.add-vehicle-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.add-vehicle-btn:hover {
+  background-color: #0056b3;
+}
+
+.add-vehicle-btn .material-icons {
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+/* === Form Section === */
+.vehicle-form {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Form layout */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fdfdfd;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.form-group[style*="flex:2"] {
+  flex: 2;
+}
+
+/* === Rate Section Toggle Button === */
+.vehicle-form > button {
+  margin: 10px 0;
+  background-color: #ffc107;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #333;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.vehicle-form > button:hover {
+  background-color: #e0a800;
+}
+
+/* === Scrollable Section for Rate Table === */
+.scroll-section {
+  overflow-x: auto;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+/* === Rate Table === */
+.rate-table {
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 2000px; /* increase from 1200px to 1600px or more */
+  width: 100%;
+}
+
+
+.rate-table thead {
+  background-color: #f1f1f1;
+}
+
+.rate-table th,
+.rate-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.rate-table input,
+.rate-table select {
+  width: 100%;
+  padding: 6px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* === Hotel Records Table Section === */
+.hotel-records-wrapper {
+  overflow-x: auto; /* scroll container for table */
+  margin-top: 25px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.hotel-records-table {
+  border-collapse: collapse;
+  width: 1400px; /* wide enough for all columns */
+  font-family: Arial, sans-serif;
+  table-layout: fixed; /* fix columns */
+  word-wrap: break-word;
+}
+
+.hotel-records-table thead tr {
+  background-color: #386798;
+  color: white;
+}
+
+.hotel-records-table th,
+.hotel-records-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hotel-records-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* === Buttons in Table === */
+.hotel-records-table button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.hotel-records-table .edit-btn {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.hotel-records-table .edit-btn:hover {
+  background-color: #e0a800;
+  color: white;
+}
+
+.hotel-records-table .delete-btn {
+  background-color: #dc3545;
+  color: white;
+  margin-left: 5px;
+}
+
+.hotel-records-table .delete-btn:hover {
+  background-color: #b02a37;
+}
+
+/* === Form Buttons === */
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cancel-btn,
+.submit-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #b02a37;
+}
+
+.submit-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+}
+
+/* === Responsive tweaks === */
+@media (max-width: 1024px) {
+  .rate-table,
+  .hotel-records-table {
+    min-width: 1000px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .search-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    min-width: 100%;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+
+  .add-vehicle-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

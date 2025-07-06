@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Office Management System</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="user.css">
+  <link rel="stylesheet" href="hotel.css">
+  <link rel="stylesheet" href="groupchart.css">
+  <link rel="stylesheet" href="guide.css">
+</head>
+
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <h2>IDEAL-T-MSD</h2>
+      <hr>
+      <ul>
+        <li onclick="showSection('dashboard')" data-section="dashboard">
+          <span class="material-icons">dashboard</span> Dashboard
+        </li>
+        <li onclick="showSection('user1ManageUsers')" data-section="user1ManageUsers">
+          <span class="material-icons">group</span> Manage Users
+        </li>
+        <li onclick="requestPinAndShow('hotels')">
+          <span class="material-icons">hotel</span> Manage Hotels
+        </li>
+        <li onclick="requestPinAndShow('vehicles')" class="active">
+          <span class="material-icons">directions_car</span> Manage Vehicles
+        </li>
+        <li onclick="requestPinAndShow('guideSection')">
+          <span class="material-icons">emoji_people</span> Manage Guides
+        </li>
+        <li onclick="requestPinAndShow('groupChart')">
+          <span class="material-icons">groups</span> Group Chart
+        </li>
+        <li onclick="requestPinAndShow('manageReservation')" data-section="manageReservation">
+          <span class="material-icons">assignment</span> Reservation-Manager
+        </li>
+        <li onclick="requestPinAndShow('ReservationAssociates')" data-section="ReservationAssociate">
+          <span class="material-icons">group_add</span> Reservation-Associate
+        </li>
+        <li onclick="requestPinAndShow('manageNaptuneOperation')">
+          <span class="material-icons">build</span> Manage Operation
+        </li>
+        <li onclick="requestPinAndShow('sanagayAccountant')">
+          <span class="material-icons">account_balance</span> Accountant Section
+        </li>
+        <li onclick="requestPinAndShow('documentSection')">
+          <span class="material-icons">description</span> Document Section
+        </li>
+      </ul>
+    </aside>
+    <main class="dashboard">
+      <!-- DASHBOARD SECTION -->
+      <section id="dashboard" class="section">
+        <center>
+          <h1>Dashboard</h1>
+        </center>
+        <hr>
+        <div class="cards">
+          <div class="card blue">
+            <h3>1083</h3>
+            <p>Hotels</p>
+          </div>
+          <div class="card green">
+          </div>
+          <div class="card orange">
+            <h3>1665</h3>
+            <p>Reservations</p>
+          </div>
+          <div class="card red">
+            <h3>54</h3>
+            <p>Blockings</p>
+          </div>
+          <div class="card teal">
+            <h3>22</h3>
+            <p>Re-Confirmations</p>
+          </div>
+        </div>
+        <hr>
+        <div style="width: 90%; max-width: 800px; margin: 2rem auto;">
+          <canvas id="incomeExpenseChart"></canvas>
+          <div id="contentArea"></div>
+      </section>
+
+      <!-- MANAGE USERS ACCOUNT -->
+      <section id="user1ManageUsers" class="section">
+        <h2 class="section-title">
+          <span class="material-icons">manage_accounts</span> Manage Users
+        </h2>
+        <button id="user1AddBtn" class="btn btn-primary">Add New User</button>
+
+        <!-- User Form -->
+        <div class="user1-form-container" style="display: none;">
+          <div class="form-card">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="user1FullName">Full Name <span>*</span></label>
+                <input type="text" id="user1FullName" placeholder="Nima Dorji" required />
+              </div>
+              <div class="form-group">
+                <label for="user1Email">Email Address <span>*</span></label>
+                <input type="email" id="user1Email" placeholder="email@example.com" required />
+              </div>
+              <div class="form-group">
+                <label for="user1Phone">Phone Number</label>
+                <input type="tel" id="user1Phone" placeholder="+975-XXXXXXX" />
+              </div>
+              <div class="form-group">
+                <label for="user1Username">Username <span>*</span></label>
+                <input type="text" id="user1Username" placeholder="username" required />
+              </div>
+              <div class="form-group">
+                <label for="user1Password">Password <span>*</span></label>
+                <div class="password-wrapper">
+                  <input type="password" id="user1Password" placeholder="Create password" required />
+                  <button type="button" class="toggle-password" id="user1TogglePassword"
+                    aria-label="Toggle Password Visibility">
+                    <span class="material-icons">visibility</span>
+                  </button>
+                </div>
+                <div class="checkbox-inline">
+                  <input type="checkbox" id="user1ShowPassword" />
+                  <label for="user1ShowPassword">Show Password</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Access Permissions -->
+            <div class="form-group full-width">
+              <hr />
+              <center><label>ACCESS PERMISSIONS <span>*</span></label></center>
+              <hr />
+              <div class="permissions">
+                <span id="user1SelectAll" class="select-all" tabindex="0" role="button"
+                  aria-label="Select All Permissions">Select All</span>
+                <div class="checkbox-grid">
+                  <label><input type="checkbox" id="user1AccessDashboard" /> Dashboard</label>
+                  <label><input type="checkbox" id="user1AccessReservations" /> Manage Reservations</label>
+                  <label><input type="checkbox" id="user1AccessVehicles" /> Manage Vehicles</label>
+                  <label><input type="checkbox" id="user1AccessHotels" /> Manage Hotels</label>
+                  <label><input type="checkbox" id="user1ManageOperation" /> Manage Operation</label>
+                  <label><input type="checkbox" id="user1ReservationManager" /> Reservation Manager</label>
+                  <label><input type="checkbox" id="user1ReservationAssociates" /> Reservation Associates</label>
+                  <label><input type="checkbox" id="user1AccountantSector" /> Accountant Sector</label>
+                  <label><input type="checkbox" id="user1ProfileAccess" /> User Profile</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Status Toggle -->
+            <div class="form-group status-toggle">
+              <label for="user1StatusToggle">Account Status:</label>
+              <label class="switch">
+                <input type="checkbox" id="user1StatusToggle" checked />
+                <span class="slider round"></span>
+              </label>
+              <span id="user1StatusText">Active</span>
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+              <button class="btn btn-danger" type="button" aria-label="Cancel User Form">
+                <span class="material-icons">close</span> Cancel
+              </button>
+              <button class="btn btn-success" id="user1SaveBtn" type="button" aria-label="Save User">
+                <span class="material-icons">save</span> Save User
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Table -->
+        <div class="table-wrapper">
+          <table class="user1-table" aria-label="User Accounts Table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="user1TableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- MANAGE HOTELS SECTION -->
+      <section id="hotels" class="section">
+        <div class="vehicles-header">
+          <h2 style="text-align: center;"><span class="material-icons">hotel</span> Manage Hotels</h2>
+          <hr>
+          <div class="search-controls">
+            <div class="search-box">
+              <span class="material-icons">search</span>
+              <input type="text" id="searchByHotelName" placeholder="Search by Hotel Name">
+            </div>
+            <button class="add-vehicle-btn" onclick="toggleForm('hotelForm')">
+              <span class="material-icons">add</span> Add New Hotel
+            </button>
+          </div>
+        </div>
+        <hr>
+
+        <!-- Hotel Form -->
+        <div id="hotelForm" class="vehicle-form" style="display:none;">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Hotel Name</label>
+              <input type="text" placeholder="Hotel Name">
+            </div>
+            <div class="form-group">
+              <label>Hotel Location</label>
+              <input type="text" placeholder="Hotel Location">
+            </div>
+            <div class="form-group">
+              <label>Official Category</label>
+              <select>
+                <option>2 Star</option>
+                <option>3 Star</option>
+                <option>4 Star</option>
+                <option>5 Star</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Our Categorization</label>
+              <input type="text" placeholder="e.g. 3 stars">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="Personal mail address">
+              <input type="email" placeholder="Department mail address">
+            </div>
+            <div class="form-group">
+              <label>Phone/Mobile Number</label>
+              <input type="text" placeholder="Personal Number">
+              <input type="text" placeholder="Department Number">
+            </div>
+            <div class="form-group" style="flex:2">
+              <label>Remarks</label>
+              <textarea placeholder="Enter your remark here"></textarea>
+            </div>
+          </div>
+          <button onclick="toggleRateSection()">+ Show Rate Section</button>
+          <!--Rate Table -->
+          <div class="scroll-section" style="display:none;">
+            <table class="rate-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Traveler / Nationality</th>
+                  <th colspan="2">Validity Period</th>
+                  <th rowspan="2">Room Types</th>
+                  <th rowspan="2">No. of Rooms</th>
+                  <th colspan="5">EP</th>
+                  <th colspan="5">CP</th>
+                  <th colspan="5">MAP</th>
+                  <th colspan="5">AP</th>
+                </tr>
+                <tr>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Dbl</th>
+                  <th>Sgl</th>
+                  <th>EB</th>
+                  <th>CWB</th>
+                  <th>CNB</th>
+                  <th>Dbl</th>
+                  <th>Sgl</th>
+                  <th>EB</th>
+                  <th>CWB</th>
+                  <th>CNB</th>
+                  <th>Dbl</th>
+                  <th>Sgl</th>
+                  <th>EB</th>
+                  <th>CWB</th>
+                  <th>CNB</th>
+                  <th>Dbl</th>
+                  <th>Sgl</th>
+                  <th>EB</th>
+                  <th>CWB</th>
+                  <th>CNB</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <select>
+                      <option>Select Country</option>
+                      <option value="Bhutan">USA</option>
+                      <option value="India">Indian</option>
+                      <option value="China">Chinese</option>
+                      <option value="Nepal">Nepali/Nepalese</option>
+                      <option value="Japan">Japanese</option>
+                      <option value="Japan">Singaporean</option>
+                      <option value="Japan">American</option>
+                      <option value="Japan">Afghanistan</option>
+                      <option value="Japan">British</option>
+                      <option value="Japan">Australian</option>
+                      <option value="Japan">Malaysian</option>
+                      <option value="Japan">Canadian</option>
+                    </select>
+                  </td>
+                  <td><input type="date"></td>
+                  <td><input type="date"></td>
+                  <td><input type="text" placeholder="Room Type"></td>
+                  <td><input type="number" value="0"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="form-buttons">
+            <button class="cancel-btn" onclick="cancelForm()">Cancel</button>
+            <button type="button" class="submit-btn">Save Hotel</button>
+          </div>
+        </div>
+        <div>
+          <!-- Hotel Records Table -->
+          <div class="hotel-records-wrapper">
+            <table class="hotel-records-table">
+              <thead>
+                <tr>
+                  <th>Hotel Name</th>
+                  <th>Hotel Location</th>
+                  <th>Official Category</th>
+                  <th>Our Categorization</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Country</th>
+                  <th>Validity Date</th>
+                  <th>Room Types</th>
+                  <th>No of Room</th>
+                  <th>MAP Rate</th>
+                  <th>CP Rate</th>
+                  <th>EP Rate</th>
+                  <th>AP Rate</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+            </table>
+          </div>
+      </section>
+
+      <!-- Group Chart Section -->
+      <section id="groupChart" class="section">
+        <div class="vehicles-header">
+          <hr>
+          <div class="search-controls">
+            <div class="search-box">
+              <span class="material-icons">search</span>
+              <input type="text" id="searchByGroupName" placeholder="Search by Group Name">
+            </div>
+            <button class="add-vehicle-btn" onclick="toggleForm('neptuneGroupChartForm')">
+              <span class="material-icons">add</span> Add New Group
+            </button>
+          </div>
+        </div>
+        <hr>
+
+        <!-- Group Chart Form -->
+        <div id="neptuneGroupChartForm">
+          <section>
+            <center>
+              <h3>Basic Details</h3>
+            </center>
+            <hr>
+            <div class="neptune-row">
+              <div class="neptune-group">
+                <label for="neptuneFileNo">File No</label>
+                <input type="text" id="neptuneFileNo" placeholder="File Number">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneGroupName">Group Name</label>
+                <input type="text" id="neptuneGroupName" placeholder="Enter group name">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneCompany">Company</label>
+                <input type="text" id="neptuneCompany" placeholder="Company Name">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneDateofConfrmtn">Date of Confirmation</label>
+                <input type="date" id="neptuneDateofConfrmtn">
+              </div>
+
+              <div class="neptune-group">
+                <label for="neptuneofpaxreginal">No of Pax Reginal</label>
+                <input type="text" id="neptunenoofpaxreginal" placeholder="Enter number">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneofpaxinternational">No of Pax international</label>
+                <input type="text" id="neptunenoofpaxinternational" placeholder="Enter number">
+              </div>
+            </div>
+          </section>
+          <section><br>
+            <center>
+              <h3>Pax Information</h3>
+              <hr>
+            </center>
+            <!-- First Row: 3 fields -->
+            <div class="neptune-row pax-three">
+              <div class="neptune-group">
+                <label for="neptuneAdults">Adults (12+)</label>
+                <input type="text" id="neptuneAdults" placeholder="No. / Nationality">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneKids">Kids (12 & below)</label>
+                <input type="text" id="neptuneKids" placeholder="No. / Nationality">
+              </div>
+              <div class="neptune-group">
+                <label for="neptunehotelcatergory">Hotel Category</label>
+                <input type="text" id="neptunehotelcatergory" placeholder="Enter hotel Category">
+              </div>
+            </div>
+
+            <!-- Second Row: 3 fields -->
+            <div class="neptune-row pax-three">
+              <div class="neptune-group">
+                <label for="neptuneroombooking">Room Booking</label>
+                <input type="text" id="neptuneroombooking" placeholder="Enter room booking">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneDurationoftours">Duration of Tours</label>
+                <input type="text" id="neptuneDurationoftours" placeholder="Enter No Of Night">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneTotalPax">Total Pax</label>
+                <input type="text" id="neptuneTotalPax" placeholder="Total number of Pax">
+              </div>
+            </div>
+          </section>
+          <!-- Section: Arrival & Departure -->
+          <section><br>
+            <div class="neptune-row arrival-departure-wrapper">
+              <!-- Arrival -->
+              <div class="arrival-block">
+                <strong>Arrival Details</strong>
+                <hr>
+                <div class="neptune-group">
+                  <label for="neptuneArrivalDate">Date</label>
+                  <input type="date" id="neptuneArrivalDate">
+                </div>
+                <div class="neptune-group">
+                  <label for="neptuneArrivalTime">Arrival Time</label>
+                  <input type="time" id="neptuneArrivalTime">
+                </div>
+                <div class="neptune-group">
+                  <label for="neptuneArrivalSector">Sector</label>
+                  <input type="text" id="neptuneArrivalSector" placeholder="Arrival Sector">
+                </div>
+                <div class="neptune-group">
+                  <label for="neptuneArrivalPort">Port / Station</label>
+                  <input type="text" id="neptuneArrivalPort" placeholder="Port of Departure">
+                </div>
+                <div class="neptune-group">
+                  <label for="neptuneArrivalMode">Flight / Train / car</label>
+                  <input type="text" id="neptuneArrivalMode">
+                </div>
+              </div>
+
+              <!-- Departure -->
+              <div class="departure-block">
+                <strong>Departure Details</strong>
+                <hr>
+                <div class="neptune-group">
+                  <label for="neptuneDepartureDate">Date</label>
+                  <input type="date" id="neptuneDepartureDate">
+                </div>
+                <div class="neptune-group">
+                  <label for="neptuneDepartureTime">Departure Time</label>
+                  <input type="time" id="neptuneDepartureTime">
+                </div>
+                <div class="neptune-group">
+                  <label for="neptuneDepartureSector">Sector</label>
+                  <input type="text" id="neptuneDepartureSector" placeholder="Departure Sector">
+                </div>
+                <div class="neptune-group">
+                  <label for="neptuneDeparturePort">Port / Station</label>
+                  <input type="text" id="neptuneDeparturePort" placeholder="Port of Arrival">
+                </div>
+                <div class="neptune-group">
+                  <label for="neptuneDepartureMode">Flight / Train / car</label>
+                  <input type="text" id="neptuneDepartureMode">
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Section: Tabs -->
+          <section><br>
+            <h3>Additional Info</h3>
+            <div>
+              <button class="tab-btn" data-target="initializationSection">Initialization</button>
+              <button class="tab-btn active" data-target="serviceInclusionSection">Service Inclusion</button>
+              <button class="tab-btn" data-target="guideVehicleSection">Guide/Vehicle Details</button>
+              <button class="tab-btn" data-target="permitVisaSection">Permit & Visa</button>
+              <button class="tab-btn" data-target="documentSection">Document</button>
+              <button class="tab-btn" data-target="dailyItinerarySection">Daily/Itinerary Update</button>
+            </div>
+          </section>
+          <!-- Section: Service Inclusion -->
+          <section id="serviceInclusionSection">
+            <fieldset style="border: 1px solid #ccc; border-radius: 8px; padding: 15px;">
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                <label><input type="checkbox" class="service-checkbox" value="Accommodations"> Accommodations</label>
+                <label><input type="checkbox" class="service-checkbox" value="Meals"> Meals</label>
+                <label><input type="checkbox" class="service-checkbox" value="Service of a Guide"> Service of a
+                  Guide</label>
+                <label><input type="checkbox" class="service-checkbox" value="Transport"> Transport</label>
+                <label><input type="checkbox" class="service-checkbox" value="Bottled water"> Bottled water</label>
+                <label><input type="checkbox" class="service-checkbox" value="Khadar"> Khadar</label>
+                <label><input type="checkbox" class="service-checkbox" value="Government SDF and Visa Fee"> Government
+                  SDF and Visa Fee</label>
+                <label><input type="checkbox" class="service-checkbox" value="Entry Fees for Museums and Monuments">
+                  Entry Fees for Museums and Monuments</label>
+                <label><input type="checkbox" class="service-checkbox" value="Traditional Cultural Show"> Traditional
+                  Cultural Show</label>
+                <label><input type="checkbox" class="service-checkbox" value="Hotstone Bath"> Hotstone Bath</label>
+                <label><input type="checkbox" class="service-checkbox" value="Archery Experience"> Archery
+                  Experience</label>
+                <label><input type="checkbox" class="service-checkbox" value="National Dress Experience"> National Dress
+                  Experience</label>
+                <label><input type="checkbox" class="service-checkbox" value="Complimentary Sim"> Complimentary
+                  Sim</label>
+                <label><input type="checkbox" class="service-checkbox" value="Gifts and Compliments"> Gifts and
+                  Compliments</label>
+                <label><input type="checkbox" class="service-checkbox" value="Bon Fire"> Bon Fire</label>
+                <label><input type="checkbox" class="service-checkbox" value="Snacks and Chocolates"> Snacks and
+                  Chocolates</label>
+                <label><input type="checkbox" class="service-checkbox" value="Birthday, Anniversary, etc Cakes">
+                  Birthday, Anniversary, etc Cakes</label>
+                <label><input type="checkbox" class="service-checkbox" value="Candle Light Dinner"> Candle Light
+                  Dinner</label>
+                <label><input type="checkbox" class="service-checkbox" value="Conference"> Conference</label>
+                <label><input type="checkbox" class="service-checkbox" value="Gala Dinner"> Gala Dinner</label>
+                <label><input type="checkbox" class="service-checkbox" value="Cocktail Snacks"> Cocktail Snacks</label>
+                <label><input type="checkbox" class="service-checkbox" value="Liquor"> Liquor</label>
+                <label><input type="checkbox" class="service-checkbox" value="Trekking Services/Expenses"> Trekking
+                  Services/Expenses</label>
+                <label><input type="checkbox" class="service-checkbox" value="Rafting"> Rafting</label>
+                <label><input type="checkbox" class="service-checkbox" value="Flight Tickets and Reservations"> Flight
+                  Tickets and Reservations</label>
+                <label><input type="checkbox" class="service-checkbox" value="Others"> Others</label>
+              </div>
+            </fieldset>
+          </section>
+          <!-- Section: Guide/Vehicle Details -->
+          <section id="guideVehicleSection">
+            <div class="neptune-row">
+              <div class="neptune-group">
+                <label for="neptuneGuideName">Guide Name</label>
+                <input type="text" id="neptuneGuideName" placeholder="Guide Full Name">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneGuideContact">Contact</label>
+                <input type="text" id="neptuneGuideContact" placeholder="Phone / Email">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneGuideprofessional">Professional</label>
+                <input type="text" id="neptuneGuideprofessional" placeholder="Enter Professional">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneGuideLicense">License No.</label>
+                <input type="text" id="neptuneGuideLicense" placeholder="License Number">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneGuideStartDate">Start Date</label>
+                <input type="date" id="neptuneGuideStartDate">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneGuideEndDate">End Date</label>
+                <input type="date" id="neptuneGuideEndDate">
+              </div>
+            </div>
+
+            <h3>Vehicle Details</h3>
+            <div class="neptune-row">
+              <div class="neptune-group">
+                <label for="neptuneVehicleType">Vehicle Type</label>
+                <input type="text" id="neptuneVehicleType" placeholder="SUV / Van / Bus">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneVehicleNo">Vehicle Number</label>
+                <input type="text" id="neptuneVehicleNo" placeholder="Plate Number">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneDriverName">Driver Name</label>
+                <input type="text" id="neptuneDriverName" placeholder="Driver Full Name">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneDriverContact">Driver Contact</label>
+                <input type="text" id="neptuneDriverContact" placeholder="Phone Number">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneVehicleStartDate">Start Date</label>
+                <input type="date" id="neptuneVehicleStartDate">
+              </div>
+              <div class="neptune-group">
+                <label for="neptuneVehicleEndDate">End Date</label>
+                <input type="date" id="neptuneVehicleEndDate">
+              </div>
+            </div>
+          </section>
+          <!-- Section: Form Buttons -->
+          <section class="neptune-buttons">
+            <button class="neptune-cancel-btn" type="button" onclick="neptuneCancelForm()">Cancel</button>
+            <button class="neptune-submit-btn" type="submit">Save Group</button>
+          </section>
+        </div>
+        <!-- Group Chart Table -->
+        <div class="group-chart-scroll">
+          <table class="neptune-table group-chart-table">
+            <thead>
+              <tr>
+                <th>Sl. No</th>
+                <th>File No</th>
+                <th>Group Name</th>
+                <th>Company</th>
+                <th>Date of Confirmation</th>
+                <th>No of Pax Reginal</th>
+                <th>No of Pax international</th>
+                <th>Adults (12+)</th>
+                <th>Kids (12 & below)</th>
+                <th>Total Pax</th>
+                <th>Room Booking</th>
+                <th>Arrival Date</th>
+                <th>Arrival Flight Time</th>
+                <th>Port / Station</th>
+                <th>Sector</th>
+                <th>Flight / Train / car</th>
+                <th>Departure Date</th>
+                <th>Departure Flight Time</th>
+                <th>Port / Station</th>
+                <th>Sector</th>
+                <th>Flight / Train / car</th>
+                <th>Nights</th>
+                <th>Hotel</th>
+                <th>Guide</th>
+                <th>Contact</th>
+                <th>Professional</th>
+                <th>License No.</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Bhutan Vehicle</th>
+                <th>Driver Name</th>
+                <th>Driver Contact</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Remark of Tours</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="neptuneGroupChartList"></tbody>
+          </table>
+        </div>
+      </section>
+      <script src="app.js"></script>
+      <script src="user.js"></script>
+      <script src="hotel.js"></script>
+      <script src="groupchart.js"></script>
+      <script src="guide.js"></script>
+</body>
+
+</html>
